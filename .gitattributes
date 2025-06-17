@@ -1,0 +1,13 @@
+* text=auto
+
+# Sources
+*.cpp   text diff=cpp
+*.h     text diff=cpp
+*.md    text diff=markdown
+
+# Files to be exported as ignored
+.gitattributes  export-ignore
+.gitignore      export-ignore
+
+# Linguist
+*.md    linguist-detectable=true
