@@ -4,5 +4,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: ./scripts/build.sh
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set script permissions
+        run: chmod +x ./scripts/build.sh
+
+      - name: Run build
+        run: ./scripts/build.sh
