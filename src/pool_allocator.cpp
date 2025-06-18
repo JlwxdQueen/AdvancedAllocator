@@ -1,14 +1,12 @@
 #include "../include/pool_allocator.h"
-#include "../include/utils.h"
-#include <stdexcept>
-#include <cstring>
 #include <cstdint>
 #include <cstdlib>
+#include <cstring>
+#include <stdexcept>
+#include "../include/utils.h"
 
-PoolAllocator::PoolAllocator(size_t block_size, size_t num_blocks)
-    : block_size_(block_size)
-    , pool_size_(block_size * num_blocks)
-{
+PoolAllocator::PoolAllocator(size_t block_size, size_t num_blocks) :
+    block_size_(block_size), pool_size_(block_size * num_blocks) {
     if (block_size == 0 || num_blocks == 0) {
         throw std::invalid_argument("Block size and number of blocks must be positive and not zero");
     }
@@ -19,18 +17,16 @@ PoolAllocator::PoolAllocator(size_t block_size, size_t num_blocks)
     }
 
     free_list_.reserve(num_blocks);
-    char* current = static_cast<char*>(pool_);
+    char *current = static_cast<char *>(pool_);
     for (size_t i = 0; i < num_blocks; ++i) {
         free_list_.push_back(current);
         current += block_size_;
     }
 }
 
-PoolAllocator::~PoolAllocator() {
-    std::free(pool_);
-}
+PoolAllocator::~PoolAllocator() { std::free(pool_); }
 
-void* PoolAllocator::allocate(size_t size, size_t alignment) {
+void *PoolAllocator::allocate(size_t size, size_t alignment) {
     std::lock_guard<std::mutex> lock(mutex_);
     if (size > block_size_) {
         throw std::invalid_argument("Requested size is larger than block size");
@@ -44,7 +40,7 @@ void* PoolAllocator::allocate(size_t size, size_t alignment) {
         throw std::bad_alloc();
     }
 
-    void* block = free_list_.back();
+    void *block = free_list_.back();
     free_list_.pop_back();
 
     uintptr_t addr = reinterpret_cast<uintptr_t>(block);
@@ -56,7 +52,7 @@ void* PoolAllocator::allocate(size_t size, size_t alignment) {
     return block;
 }
 
-void PoolAllocator::deallocate(void* ptr, [[maybe_unused]] size_t size) noexcept {
+void PoolAllocator::deallocate(void *ptr, [[maybe_unused]] size_t size) noexcept {
     if (!ptr) {
         return;
     }
@@ -72,4 +68,4 @@ void PoolAllocator::deallocate(void* ptr, [[maybe_unused]] size_t size) noexcept
     }
 
     free_list_.push_back(ptr);
-} 
+}

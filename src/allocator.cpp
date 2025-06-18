@@ -1,16 +1,16 @@
 #include "../include/allocator.h"
 #include "../include/utils.h"
 
-#include <stdexcept>
-#include <cstdlib>
 #include <cstddef>
+#include <cstdlib>
+#include <stdexcept>
 
-void* Allocator::allocate(size_t size, size_t alignment) {
+void *Allocator::allocate(size_t size, size_t alignment) {
     if (!utils::is_power_of_2(alignment)) {
         throw std::invalid_argument("Alignment must be a power of 2");
     }
 
-    void* ptr = nullptr;
+    void *ptr = nullptr;
     int result = posix_memalign(&ptr, alignment, size);
     if (result != 0) {
         throw std::bad_alloc();
@@ -18,7 +18,7 @@ void* Allocator::allocate(size_t size, size_t alignment) {
     return ptr;
 }
 
-void Allocator::deallocate(void* ptr, [[maybe_unused]] size_t size) noexcept {
+void Allocator::deallocate(void *ptr, [[maybe_unused]] size_t size) noexcept {
     if (ptr == nullptr) {
         return;
     }

@@ -49,10 +49,8 @@ buddy.deallocate(ptr2);
 ## Сборка
 
 ```bash
-mkdir build
-cd build
-cmake ..
-make
+chmod +x build.sh
+./build_and_run_ninja.sh
 ```
 
 ## Требования
