@@ -50,7 +50,7 @@ buddy.deallocate(ptr2);
 
 ```bash
 chmod +x build.sh
-./build_and_run_ninja.sh
+./build.sh
 ```
 
 ## Требования
