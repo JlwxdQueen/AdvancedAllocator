@@ -49,8 +49,9 @@ buddy.deallocate(ptr2);
 ## Сборка
 
 ```bash
-chmod +x build.sh
-./build.sh
+chmod +x ./scripts/build.sh
+./scripts/build.sh #regular build
+./scripts/build.sh --clean #clean build
 ```
 
 ## Требования
