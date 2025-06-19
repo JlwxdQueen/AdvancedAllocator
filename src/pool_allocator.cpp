@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <stdexcept>
-#include "../include/utils.h"
+#include "../internal/utils.h"
 
 PoolAllocator::PoolAllocator(size_t block_size, size_t num_blocks) :
     block_size_(block_size), pool_size_(block_size * num_blocks) {

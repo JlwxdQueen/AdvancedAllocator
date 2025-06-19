@@ -10,7 +10,7 @@ set(SOURCES
     src/allocator.cpp
     src/pool_allocator.cpp
     src/buddy_allocator.cpp
-    src/utils.cpp
+    internal/utils.cpp
 )
 
 add_library(advanced_allocator ${SOURCES})

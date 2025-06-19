@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <cstdlib>
 #include <stdexcept>
-#include "../include/utils.h"
+#include "../internal/utils.h"
 
 BuddyAllocator::BuddyAllocator(size_t max_block_size) : max_block_size_(max_block_size) {
     if (!utils::is_power_of_2(max_block_size)) {
