@@ -31,8 +31,7 @@ echo "Генерация сборки в ${BUILD_DIR}..."
 cmake -G Ninja "$PROJECT_DIR" \
   -DCMAKE_BUILD_TYPE=Release \
   -DCMAKE_C_FLAGS="-Os -ffunction-sections -fdata-sections" \
-  -DCMAKE_CXX_FLAGS="-Os -ffunction-sections -fdata-sections" \
-  -DCMAKE_EXE_LINKER_FLAGS="-Wl,--gc-sections -s"
+  -DCMAKE_CXX_FLAGS="-Os -ffunction-sections -fdata-sections"
 
 echo "Сборка проекта..."
 ninja

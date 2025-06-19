@@ -10,6 +10,7 @@ set(SOURCES
     src/allocator.cpp
     src/pool_allocator.cpp
     src/buddy_allocator.cpp
+    src/linear_allocator.cpp
     internal/utils.cpp
 )
 
